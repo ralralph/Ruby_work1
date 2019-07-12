@@ -1,33 +1,42 @@
 # コンソールを入力待ち状態にし、プレイヤーがコンソールから打ち込んだ値を出力する処理のメソッドの処理をこの中に作成する
 class Player
   def hand
-    loop{
-      puts "数字を入力してください"
-      puts "0:グー\n1:チョキ\n2:パー"
+      number = nil
+      while true
+        puts "数字を入力してください"
+        puts "0:グー\n1:チョキ\n2:パー"
 
-      player_hand = gets.to_i
+        number = gets.chomp
+        if number =~ /^[0-9]+$/
+          break
+          else
+            puts "0~2の数字を入力してください。"
+        end
+      end
+
+      player_hand = number.to_i
 
       if player_hand == 0
         puts "あなたはグーを出しました。"
         return player_hand
-         break
         elsif player_hand == 1
           puts "あなたはチョキを出しました。"
           return player_hand
-         break
         elsif player_hand == 2
           puts "あなたはパーを出しました。"
          return player_hand
-         break
        elsif  player_hand == 4649
          puts "よろしゅう！"
          puts "ほんで何出すん？"
+         player = Player.new
+         hand
        elsif  player_hand == 1192296
          puts "鎌倉幕府！"
          puts "ってちゃうやん!!!"
+         hand
        else puts "0~2の数字を入力してください。"
+         hand
       end
-    }
   end
 end
 
